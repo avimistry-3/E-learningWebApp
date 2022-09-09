@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}"/>
+    
+    <title>E-Learning WebApp - {% block title %}Welcome!{% endblock %}</title>
+ </head>
+ <body>
+     <div style="padding: 10px;">
+         {% if user.is_authenticated %}
+         <button style="float:right; margin: 10px;" class="btn btn-light"> 
+            <a style=" text-decoration: none; padding: 10px; " href="{% url 'myapp:logout' %}">Logout</a>
+        </button>
+                
+            <button style="float:right; margin: 10px;" class="btn btn-light">
+                <a style=" text-decoration: none; padding: 10px; " href="{% url 'myapp:myaccount' %}">My Account</a>
+            </button>
+            
+         {% else %}
+         <button style="float:right; margin: 10px;" class="btn btn-light"> 
+            <a style=" text-decoration: none; padding: 10px; " href="{% url 'myapp:register' %}">Register</a>
+        </button>
+                
+            <button style="float:right; margin: 10px;" class="btn btn-light">
+                <a style=" text-decoration: none; padding: 10px; " href="{% url 'myapp:myaccount' %}">My Account</a>
+            </button>
+            <button style="float:right; margin: 10px;" class="btn btn-light">
+                <a style=" text-decoration: none; padding: 10px; " href="{% url 'myapp:login' %}">Login</a>
+            </button>
+
+         
+         {% endif %}
+        <br/>
+        <br>
+         <h1 class="container col-lg-5" style="margin: 0px; border-radius: 10px;">
+            {% block myhdg %}Hello {{ user }} {% endblock %}
+         </h1>
+            <br> 
+         {% block body_block %}*** {% endblock %}
+     </div>
+     <hr />
+     <div>
+         <ul>
+             <li class="hbar1"><a href="{% url 'myapp:about' %}">What's E-Learning?</a></li>
+             <li class="hbar1"><a href = "{% url 'myapp:index' %}">Return to main page</a></li>
+             <li class="hbar1"><a href = "{% url 'myapp:courses' %}">All courses</a></li>
+         </ul>
+    </div>
+ </body>
+</html>

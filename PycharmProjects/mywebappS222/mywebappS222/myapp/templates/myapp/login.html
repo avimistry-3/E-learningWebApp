@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+<head>
+     <link rel="stylesheet" type="text/css" href="{% static 'myapp/login.css' %}"/>
+</head>
+    {% block body_block %}
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <div class="card p-5">
+                <div class="card-title"> Login Form</div>
+                <hr>
+                <form method="post" class="form">
+
+                    {% csrf_token%}
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" name="username">
+                    </p>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" name="password" class="form-control">
+                    </p>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" value="Login">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <a class="btn btn-info" href="{% url 'myapp:forgotPassword' %}">Forgot Password ?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
